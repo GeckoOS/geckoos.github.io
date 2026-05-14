@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeckoOS</title>
+    <link rel="icon" type="image/x-icon" href="/images/GeckoOS.png ">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../index.html">GeckoOS</a></li>
+                <li><a href="../contributors/index.html">Contributors</a></li>
+                <li><a href="../download/index.html">Downloads</a></li>
+                <li><a href="../how-to-contribute/index.html">How to Contribute</a></li>
+                <li><a href="../roadmap/index.html">Roadmap</a></li>
+            </ul>
+        </nav>
+        <div class="flex-container">
+            <img height="200px" width="200px" src="images/GeckoOS.png">
+            <div class="text-container">
+                <h1>Our Vision</h1>
+                <p>We want to have a ton of people come together and make their own individual contributions to a barebones operating system. Our goal is to have an OS which is fully custom built from scratch, and which can boot on an x86 machine. Any contributions are greatly appreciated!</p>
+                <a href="https://github.com/Ember2819/Random-People-Coding-Stuff" class="cta-button">GitHub Repo</a>
+                <a href="https://matrix.to/#/#geckoos-official:matrix.org" class="cta-button">Matrix Chat</a>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <h2>Frequently Asked Questions</h2>
+        <details>
+  <summary><a>How do I compile and run this project?</a></summary>
+  <p>
+  <b>
+  NOTE: THESE INSTRUCTIONS ARE TARGETING LINUX BASED SYSTEMS, IF YOU DON'T USE LINUX THEN INSTALL LINUX ON A VIRTUAL MACHINE TO FOLLOW THESE
+  </b>
+  </p>
+  <p>
+  A:<i> Step 1 - Installing the required build tools</i>
+  </p>
+  <p>I am using Ubuntu for this guide, the following command will install the required tools on any Ubuntu based distro.
+  <code>sudo apt install build-essential binutils nasm clang qemu-system-x86</code>
+  </p>
+  <p>
+  This installs:
+  </p>
+  
+  <p style="margin-left: 40px;">
+NASM (for assembling the bootloader)
+<br>LD (the GNU linker for linking the code into one image)
+<br>Clang (for compiling the C code)
+<br>GCC (backup compiler, same use as Clang)
+<br>Make (for automating all the commands needed)
+<br>QEMU (emulator, for testing the OS)
+</p>
+  
+  <p>
+  If you are not using an Ubuntu based distro then use any equivalent command for your distro's package manager, these tools should be easily available for all distros.
+  </p>
+  
+  <p>
+  <i>Step 2 - Building the OS</i>
+  </p>
+  
+  <p>
+  This process will work on any Linux distro as long as you have the previously stated dependencies installed. There are 2 commands you can use for this:
+  </p>
+  
+  
+  
+    <p style="margin-left: 40px;">
+<code>make all</code> - This produces an os.img file
+<br><code>make run</code> - This produces an os.img file as well, but it also runs the img file in qemu so you can test it out.
+</p>
+  
+</details>
+    </section>
+
+    <section id="contact-us">
+        <div class="flex-container">
+            <div class="text-container">
+                <h3>Contact Us</h3>
+                <p>We have 2 points of contact; feel free to email either of us to get in touch!</p>
+                <p>We also have a Matrix chat, so if you have a Matrix account then feel free to join that as well!</p>
+                <a href="mailto:elroylilly@gmail.com" class="cta-button">Ember2819</a>
+                <a href="mailto:theottermonarch@proton.me" class="cta-button">TheOtterMonarch</a>
+                <a href="https://matrix.to/#/#geckoos-official:matrix.org" class="cta-button">Matrix Chat</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <a href="mailto:elroylilly@gmail.com">Contact</a>
+        <a href="https://github.com/Ember2819/Random-People-Coding-Stuff">Github</a>
+        <a href="https://matrix.to/#/#geckoos-official:matrix.org">Matrix</a>
+    </footer>
+</body>
+
+</html>
+

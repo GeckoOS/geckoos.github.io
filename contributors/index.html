@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeckoOS Contributors</title>
+
+    <link rel="icon" type="image/x-icon" href="/images/GeckoOS.png">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .contributors-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: stretch;
+            margin-top: 2rem;
+            padding: 1rem;
+        }
+
+        .contributor-card {
+            background: var(--color-3);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+
+            /* Dynamic sizing magic */
+            width: fit-content;
+            min-width: 240px;
+            max-width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+
+            word-break: break-word;
+            overflow-wrap: anywhere;
+        }
+
+        .contributor-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .contributor-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 2px solid var(--primary-color);
+            flex-shrink: 0;
+        }
+
+        .contributor-name {
+            margin: 0;
+            font-size: 1.25rem;
+
+            /* Allows giant usernames */
+            max-width: 100%;
+            white-space: normal;
+        }
+
+        .contributor-role {
+            opacity: 0.7;
+            font-size: 0.95rem;
+            margin-top: 0.4rem;
+        }
+
+        .contributor-links {
+            margin-top: 1rem;
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../index.html">GeckoOS</a></li>
+                <li><a href="../contributors/index.html">Contributors</a></li>
+                <li><a href="../download/index.html">Downloads</a></li>
+                <li><a href="../how-to-contribute/index.html">How to Contribute</a></li>
+                <li><a href="../roadmap/index.html">Roadmap</a></li>
+            </ul>
+        </nav>
+
+        <div class="text-container" style="margin:auto;text-align:center;">
+            <h1>Contributors</h1>
+        </div>
+    </header>
+
+    <section>
+        <div class="contributors-grid" id="contributorsGrid"></div>
+    </section>
+
+    <footer>
+        <a href="index.html">Home</a>
+        <a href="https://github.com/Ember2819/Random-People-Coding-Stuff">Github</a>
+        <a href="https://matrix.to/#/#geckoos-official:matrix.org">Matrix</a>
+    </footer>
+<!-- I was manually typing them into the code but I got lazy so wrote a little thing to load from json file -->
+    <script>
+        async function loadContributors() {
+            try {
+                const response = await fetch("./contributors.json");
+                const contributors = await response.json();
+
+                const grid = document.getElementById("contributorsGrid");
+
+                contributors.forEach(contributor => {
+                    const card = document.createElement("div");
+                    card.className = "contributor-card";
+
+                    card.innerHTML = `
+                        <img
+                            src="${contributor.avatar}"
+                            alt="${contributor.name} Avatar"
+                            class="contributor-avatar"
+                        >
+
+                        <h3 class="contributor-name">
+                            ${contributor.name}
+                        </h3>
+
+                        <p class="contributor-role">
+                            ${contributor.role}
+                        </p>
+
+                        <div class="contributor-links">
+                            ${
+                                contributor.github
+                                    ? `<a href="${contributor.github}" class="cta-button" target="_blank">GitHub</a>`
+                                    : ""
+                            }
+
+                            ${
+                                contributor.website
+                                    ? `<a href="${contributor.website}" class="cta-button" target="_blank">Website</a>`
+                                    : ""
+                            }
+                        </div>
+                    `;
+
+                    grid.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error("Failed to load contributors:", error);
+            }
+        }
+
+        loadContributors();
+    </script>
+
+</body>
+</html>
