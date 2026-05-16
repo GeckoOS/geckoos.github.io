@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeckoOS Chat</title>
+
+    <link rel="icon" type="image/x-icon" href="/images/GeckoOS.png">
+    <link rel="stylesheet" href="../style.css">
+
+    <style>
+        .chat-section {
+            margin: 2em auto;
+            width: min(75em, 100%);
+            background-color: var(--color-2);
+            padding: 3em min(2em, 15%);
+            border-radius: 1em;
+        }
+
+        .chat-header {
+            text-align: center;
+            margin-bottom: 2em;
+        }
+
+        .chat-header h1 {
+            font-size: 2.2rem;
+        }
+
+        .chat-header p {
+            margin-top: 1em;
+            font-size: 1.1rem;
+            opacity: 0.85;
+        }
+
+        .chat-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--color-1);
+            border: 2px solid var(--primary-color);
+            border-radius: 1em;
+            padding: 1em;
+            box-shadow: 0 0 25px rgba(0, 120, 16, 0.15);
+        }
+
+        widgetbot {
+            border-radius: 1em;
+            max-width: 100%;
+        }
+
+        .chat-footer {
+            margin-top: 2em;
+            text-align: center;
+        }
+
+        .chat-footer p {
+            margin-bottom: 1em;
+        }
+
+        @media (max-width: 900px) {
+            widgetbot {
+                width: 100% !important;
+                height: 600px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">GeckoOS</a></li>
+            <li><a href="../contributors/index.html">Contributors</a></li>
+            <li><a href="../download/index.html">Downloads</a></li>
+            <li><a href="../live-demo/index.html">Live Demo</a></li>
+            <li><a href="../how-to-contribute/index.html">How to Contribute</a></li>
+            <li><a href="../roadmap/index.html">Roadmap</a></li>
+        </ul>
+    </nav>
+
+    <section class="chat-section">
+
+        <div class="chat-header">
+            <h1>GeckoOS Community Chat</h1>
+            <p>Talk with us as a guest.</p>
+        </div>
+
+        <div class="chat-container">
+            <widgetbot
+                server="1503853145409978388"
+                channel="1503853146068488295"
+                width="800"
+                height="600"
+            ></widgetbot>
+        </div>
+
+        <div class="chat-footer">
+            <p>Prefer Matrix instead? You can still join there too.</p>
+            <a href="https://matrix.to/#/#geckoos-official:matrix.org" class="cta-button">
+                Open Matrix Chat
+            </a>
+        </div>
+
+    </section>
+
+    <footer>
+        <a href="mailto:elroylilly@gmail.com">Contact</a>
+        <a href="https://github.com/GeckoOS/GeckoOS">Github</a>
+        <a href="https://matrix.to/#/#geckoos-official:matrix.org">Matrix</a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
+
+</body>
+</html
