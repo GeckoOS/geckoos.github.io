@@ -2,7 +2,7 @@
     {
         "name": "Ember2819",
         "role": "Founder",
-        "avatar": "https://placehold.co/100x100",
+        "avatar": "/images/avatars/Ember2819.jpeg",
         "github": "https://github.com/Ember2819"
     },
     {
@@ -21,19 +21,19 @@
     {
         "name": "MorganPG",
         "role": "Contributor",
-        "avatar": "https://placehold.co/100x100",
+        "avatar": "/images/avatars/morganpg.jpeg",
         "github": "https://github.com/MorganPG1"
     },
     {
         "name": "mckaylap2304",
         "role": "Contributor",
-        "avatar": "https://placehold.co/100x100",
+        "avatar": "/images/avatars/mckaylap2304.jpeg",
         "github": "https://github.com/mckaylap2304"
     },
     {
         "name": "billythemoon",
         "role": "Contributor",
-        "avatar": "https://placehold.co/100x100",
+        "avatar": "/images/avatars/moonbilly.jpeg",
         "github": "https://github.com/billythemoon"
     },
     {
@@ -51,7 +51,7 @@
     {
         "name": "Flixytss",
         "role": "Contributor",
-        "avatar": "https://placehold.co/100x100",
+        "avatar": "/images/avatars/flix.png",
         "github": "https://github.com/flixytss"
     },
     {
@@ -69,7 +69,7 @@
     {
         "name": "nfoxers",
         "role": "Contributor",
-        "avatar": "https://placehold.co/100x100",
+        "avatar": "/images/avatars/nfoxers.jpeg",
         "github": "https://github.com/nfoxers"
     },
     {
@@ -81,7 +81,7 @@
     {
         "name": "CoderPenguin1-Dev",
         "role": "Contributor",
-        "avatar": "https://placehold.co/100x100",
+        "avatar": "/images/avatars/coderp.png",
         "github": "https://github.com/CoderPenguin1-dev"
     }
 ]
