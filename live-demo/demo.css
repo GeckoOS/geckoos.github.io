@@ -1,0 +1,206 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --base-color: #0f1115;
+    --text-color: #e6e8ec;
+    --primary-color: #00c853;
+    --secondary-color: #009624;
+    --color-1: #171a21;
+    --color-2: #1f2430;
+    --color-3: #151821;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, a {
+    font-family: Poppins, sans-serif;
+    color: var(--text-color);
+}
+
+body {
+    padding: 1em;
+    background-color: var(--base-color);
+}
+
+/* NAVIGATION */
+nav {
+    margin: 1em auto 3em auto;
+    width: min(1000px, 100%);
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    gap: 2em;
+}
+
+nav li:first-child {
+    margin-right: auto;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    opacity: 1;
+}
+
+/* HERO / HEADER */
+header {
+    margin: 2em auto;
+    width: min(75em, 100%);
+    background-color: var(--color-1);
+    padding: 3em;
+    border-radius: 1em;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 3em;
+}
+
+.text-container {
+    flex: 0 1 34em;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+.text-container p {
+    margin: .75em 0 1em 0;
+    font-size: 1.25rem;
+    opacity: 0.85;
+}
+
+/* BUTTONS */
+.cta-button {
+    transition: transform 0.2s ease-in-out;
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background-color: var(--primary-color);
+    padding: .75em 1.25em;
+    border-radius: .5em;
+    font-weight: 600;
+    margin-right: 1em;
+}
+
+.cta-button:hover {
+    transform: scale(1.04);
+}
+
+.secondary {
+    background-color: var(--secondary-color);
+}
+
+/* PANELS */
+section {
+    margin: 2em auto;
+    width: min(75em, 100%);
+    padding: 2.5em;
+    background-color: var(--color-2);
+    border-radius: 1em;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+section p {
+    margin-top: 1em;
+    font-size: 1.1rem;
+    opacity: 0.85;
+}
+
+/* EMULATOR CARD */
+.card {
+    margin-top: 1.5em;
+    padding: 1.5em;
+    border-radius: 1em;
+    background-color: var(--color-3);
+    border: 1px solid #2a2f3a;
+    text-align: left;
+}
+
+.status {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-top: 0.5em;
+}
+
+/* BUTTON ROW */
+.button-row {
+    margin-top: 1em;
+}
+
+footer {
+    padding: 2em 0;
+    text-align: center;
+    opacity: 0.7;
+}
+
+footer a {
+    margin: 0 1em;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* MOBILE */
+@media(max-width: 640px) {
+    nav li {
+        display: none;
+    }
+
+    nav li:first-child,
+    nav li:last-child {
+        display: block;
+    }
+
+    header {
+        text-align: center;
+        padding: 2em;
+    }
+
+    .cta-button {
+        width: 100%;
+        margin-top: .5em;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}
+/* EMULATOR SCREEN */
+#screen_container {
+    width: 100%;
+    background: #000;
+    border-radius: .5em;
+    overflow: hidden;
+}
+
+#screen_container canvas,
+#screen_container div {
+    display: block;
+    width: 100% !important;
+    height: auto !important;
+}

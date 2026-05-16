@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>GeckoOS Live Portal</title>
+    <link rel="stylesheet" href="demo.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Poppins, sans-serif;
+            background: var(--base-color);
+            color: var(--text-color);
+        }
+
+        nav {
+            margin: 1em auto 2em auto;
+            width: min(1000px, 100%);
+        }
+
+        nav ul {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 2em;
+        }
+
+        nav li:first-child {
+            margin-right: auto;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            opacity: 0.7;
+            transition: opacity 0.15s;
+        }
+
+        nav a:hover { opacity: 1; text-decoration: underline; }
+
+        header {
+            margin: 0 auto 2em auto;
+            width: min(75em, 100%);
+            background: var(--color-1);
+            padding: 3em;
+            border-radius: 1em;
+        }
+
+        header h1 { font-size: 2.5rem; margin-bottom: 0.4em; }
+
+        header p {
+            font-size: 1.15rem;
+            opacity: 0.75;
+            margin-bottom: 1.5em;
+            max-width: 36em;
+        }
+
+        .button-row {
+            display: flex;
+            gap: 0.75em;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4em;
+            padding: 0.7em 1.4em;
+            border-radius: 0.5em;
+            font-family: Poppins, sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.15s, opacity 0.15s;
+            text-decoration: none;
+            color: white;
+        }
+
+        .cta-button:hover:not(:disabled) { transform: scale(1.03); }
+        .cta-button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+        #launchBtn  { background: var(--primary-color); }
+        #stopBtn    { background: #c0392b; display: none; }
+
+        #status {
+            margin-top: 1em;
+            font-size: 0.85rem;
+            opacity: 0.6;
+            min-height: 1.2em;
+            letter-spacing: 0.02em;
+        }
+
+        #emulator-panel {
+            display: none;
+            margin: 0 auto 2em auto;
+            width: min(75em, 100%);
+        }
+
+        .emu-card {
+            background: var(--color-2);
+            border-radius: 1em;
+            overflow: hidden;
+            border: 1px solid #2a2f3a;
+        }
+
+        .emu-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75em 1.25em;
+            background: var(--color-3);
+            border-bottom: 1px solid #2a2f3a;
+            font-size: 0.82rem;
+            opacity: 0.8;
+        }
+
+        .emu-toolbar-title {
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            opacity: 0.6;
+        }
+
+        /* Terminal window*/
+        #screen_container {
+            width: 100%;
+            background: #000;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        #screen_container canvas {
+            display: block;
+            width: 100% !important;
+            height: auto !important;
+            image-rendering: pixelated;
+        }
+
+        #screen_container > div {
+            display: block;
+            width: 100% !important;
+            text-align: left;
+            padding: 0.5em;
+            font-family: monospace;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2em 0;
+            opacity: 0.45;
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            margin: 0 0.75em;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        footer a:hover { text-decoration: underline; }
+
+        /* ── Mobile ── */
+        @media (max-width: 640px) {
+            nav li { display: none; }
+            nav li:first-child, nav li:last-child { display: block; }
+            header { padding: 2em; }
+            header h1 { font-size: 1.8rem; }
+            .cta-button { width: 100%; justify-content: center; }
+            .button-row { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="../"><strong>GeckoOS</strong></a></li>
+        <li><a href="../download/">Download</a></li>
+        <li><a href="../roadmap/">Roadmap</a></li>
+        <li><a href="../contributors/">Contributors</a></li>
+    </ul>
+</nav>
+
+<header>
+    <h1>Boot GeckoOS in the browser</h1>
+    <p>Run GeckoOS directly inside a virtual x86 machine</p>
+    <div class="button-row">
+        <button class="cta-button" id="launchBtn">▶ Launch Emulator</button>
+        <button class="cta-button" id="stopBtn">■ Stop</button>
+    </div>
+    <div id="status"></div>
+</header>
+
+<div id="emulator-panel">
+    <div class="emu-card">
+        <div class="emu-toolbar">
+            <span class="emu-toolbar-title">GeckoOS — Live Demo</span>
+            <span id="emu-status-badge">Booting...</span>
+        </div>
+        <div id="screen_container"></div>
+    </div>
+</div>
+
+<footer>
+    <a href="../">Home</a>
+    <a href="https://github.com/geckoos/geckoos.github.io" target="_blank">GitHub</a>
+    <p>Credit copy.sh for the v86 emulator</p>
+</footer>
+
+<script src="build/libv86.js"></script>
+<script>
+let emulator = null;
+
+async function fetchBuffer(url, label) {
+    document.getElementById("status").textContent = "Loading " + label + "...";
+    const resp = await fetch(url);
+    if (!resp.ok) throw new Error("Failed to fetch " + url + " (" + resp.status + ")");
+    return await resp.arrayBuffer();
+}
+
+document.getElementById("launchBtn").onclick = async function () {
+    const btn    = document.getElementById("launchBtn");
+    const stopBtn = document.getElementById("stopBtn");
+    const status = document.getElementById("status");
+    const badge  = document.getElementById("emu-status-badge");
+
+    btn.disabled = true;
+    btn.textContent = "Loading...";
+
+    try {
+        const [biosBuffer, vgaBiosBuffer, cdromBuffer, hdaBuffer] = await Promise.all([
+            fetchBuffer("bios/seabios.bin",   "BIOS"),
+            fetchBuffer("bios/vgabios.bin",   "VGA BIOS"),
+            fetchBuffer("images/gecko.iso",   "CD-ROM"),
+            fetchBuffer("images/fat32.img",   "Hard Disk"),
+        ]);
+
+        status.textContent = "Starting emulator...";
+        document.getElementById("emulator-panel").style.display = "block";
+
+        emulator = new V86({
+            wasm_path:        "build/v86.wasm",
+            screen_container: document.getElementById("screen_container"),
+            memory_size:      256 * 1024 * 1024,
+            vga_memory_size:  8   * 1024 * 1024,
+            bios:             { buffer: biosBuffer },
+            vga_bios:         { buffer: vgaBiosBuffer },
+            cdrom:            { buffer: cdromBuffer },
+            hda:              { buffer: hdaBuffer },
+            boot_order:       0x123,
+            autostart:        true,
+        });
+
+        emulator.add_listener("emulator-ready", function () {
+            status.textContent = "Emulator running.";
+            badge.textContent  = "Running";
+            btn.textContent    = "▶ Running";
+            stopBtn.style.display = "inline-flex";
+        });
+
+    } catch (err) {
+        status.textContent = "Error: " + err.message;
+        btn.disabled = false;
+        btn.textContent = "▶ Launch Emulator";
+        console.error(err);
+    }
+};
+
+document.getElementById("stopBtn").onclick = function () {
+    if (!emulator) return;
+    emulator.stop();
+    emulator = null;
+
+    const btn     = document.getElementById("launchBtn");
+    const stopBtn = document.getElementById("stopBtn");
+    const status  = document.getElementById("status");
+    const badge   = document.getElementById("emu-status-badge");
+
+    document.getElementById("screen_container").innerHTML = "";
+    document.getElementById("emulator-panel").style.display = "none";
+    btn.disabled      = false;
+    btn.textContent   = "▶ Launch Emulator";
+    stopBtn.style.display = "none";
+    status.textContent = "";
+    badge.textContent  = "Booting...";
+};
+</script>
+
+</body>
+</html>
